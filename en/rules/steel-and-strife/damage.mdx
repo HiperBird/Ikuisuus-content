@@ -1,0 +1,108 @@
+---
+contentType: rule
+---
+
+# Damage
+
+This page covers everything that happens after an attack hits or an effect triggers: how damage is calculated, how damage types, resistance, and vulnerability interact, what happens when hit points run out, and how healing and temporary hit points work.
+
+---
+
+## Hit Points
+
+Hit points represent a combination of physical and mental durability, the will to live, and luck. A creature's current hit points can be any number from 0 up to its hit point maximum.
+
+- Whenever a creature takes damage, subtract that damage from its hit points.
+- The loss of hit points has no effect on a creature's capabilities until the creature drops to 0 hit points.
+- Hit points can fall below 0; a creature in that state is downed and accruing negative hit points. See [Healing, Recovery, and Death](/en/library/rules/life-blood-and-ruin/healing-recovery-and-death) for the full rules on negative hit points, overkill, and instant death.
+
+---
+
+## Damage Rolls
+
+Each weapon, spell, and harmful monster ability specifies the damage it deals. Roll the damage die or dice, add any modifiers, and apply the result to the target.
+
+- When attacking with a weapon, add your ability modifier — the same modifier used for the attack roll — to the damage.
+- A spell tells you which dice to roll for damage and whether to add any modifiers.
+- Magic weapons, special abilities, and other factors can grant a bonus to damage.
+- When an effect damages more than one target simultaneously, roll the damage once and apply the same result to each creature caught in the effect.
+
+---
+
+## Critical Hits
+
+When you score a critical hit, roll **all** of the attack's damage dice twice, then add any relevant modifiers once. Apply the total as normal damage.
+
+- This includes bonus dice from features such as Sneak Attack — all of them are doubled.
+- Static modifiers (ability scores, magic bonuses) are added once, not doubled.
+
+---
+
+## Damage Types
+
+Each damage instance has a type that determines what resistances and vulnerabilities apply. If a new effect lacks an obvious type, the GM assigns one.
+
+| Type        | Examples                                                               |
+| ----------- | ---------------------------------------------------------------------- |
+| Acid        | Black dragon breath, black pudding                                     |
+| Bludgeoning | Hammers, falling, constriction                                         |
+| Cold        | Ice devil's spear, white dragon breath                                 |
+| Fire        | Flames, dragon fire; nonmagical fire is still fire damage              |
+| Force       | Magic missile, spiritual weapon — pure magical energy                  |
+| Lightning   | Lightning bolt, blue dragon breath                                     |
+| Necrotic    | Withering undead attacks, chill touch                                  |
+| Piercing    | Spears, bites, arrows                                                  |
+| Poison      | Venomous stings, green dragon breath                                   |
+| Psychic     | Mind flayer psionic blasts, mental assault                             |
+| Radiant     | Divine smites, angel attacks, flame strike                             |
+| Slashing    | Swords, axes, claws                                                    |
+| Thunder     | Concussive sound, thunderwave                                          |
+| True        | Cannot be resisted or avoided. Rare; reserved for exceptional effects. |
+
+---
+
+## Resistance and Vulnerability
+
+**Resistance** to a damage type halves incoming damage of that type. **Vulnerability** doubles it. Both are applied after all other modifiers to the damage total.
+
+- Apply fixed reductions (magical auras, flat damage reduction features) first, then apply resistance or vulnerability to the resulting total.
+- Multiple instances of resistance or vulnerability to the same damage type count as only one instance — they do not stack.
+- If an effect deals multiple damage types, apply resistance or vulnerability separately to each type before summing.
+
+### Examples
+
+- A creature with resistance to bludgeoning takes 25 damage; a magical effect reduces all damage by 5 first, so the total is reduced to 20, then halved to **10**.
+- A creature vulnerable to fire takes fire damage — double the total after other modifiers.
+- Resistance to fire and resistance to all nonmagical damage do not stack: fire damage is halved once.
+
+---
+
+## Healing
+
+Healing restores a creature's hit points up to its hit point maximum. Any healing beyond that maximum is lost.
+
+A creature that has died cannot regain hit points until restored to life by appropriate magic.
+
+---
+
+## Temporary Hit Points
+
+Temporary hit points are a buffer against damage. They are not real hit points — they sit on top of your hit point total and absorb damage first. When a source of damage depletes your temporary hit points, any remaining damage carries over to your actual hit points.
+
+- Temporary hit points cannot exceed the stated amount; if you receive temporary hit points while you already have some, take the higher value rather than adding them together.
+- Healing does not restore temporary hit points; they must be granted by a specific feature or effect.
+- Unless a feature specifies a duration, temporary hit points last until depleted or until you finish a long rest.
+
+---
+
+## Dropping to 0 Hit Points
+
+When a creature drops to 0 hit points, it either dies outright or falls unconscious, as determined by subsequent rules covering death and dying. Massive damage or effects that kill outright bypass the unconscious state entirely.
+
+---
+
+## Interactions
+
+- Damage types interact with resistances from items, class features, spells, and creature traits. Always determine the damage type first, then apply flat reductions, then resistance or vulnerability.
+- The GM assigns a damage type to ambiguous effects — choose the type that best fits the description and intent.
+- Critical hits double all damage dice. If Sneak Attack, Divine Smite, or similar add dice to an attack, those dice are doubled on a critical hit.

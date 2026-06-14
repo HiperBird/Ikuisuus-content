@@ -1,0 +1,60 @@
+# Banned Terms List
+# -----------------
+# One term per line. Blank lines and lines starting with # are ignored.
+# Matching uses word-boundary detection (\b) so partial matches inside
+# legitimate words are avoided. Case-insensitive.
+#
+# Keep in sync with src/lib/security/banned-terms.txt in the main repo.
+
+# ── Profanity ──
+fuck
+shit
+asshole
+bitch
+cunt
+dick
+cocksucker
+motherfucker
+pussy
+twat
+wanker
+bastard
+damn
+piss
+bollocks
+arsehole
+shithead
+dumbass
+jackass
+dipshit
+bullshit
+horseshit
+son of a bitch
+whore
+slut
+
+# ── Slurs ──
+nigger
+nigga
+faggot
+fag
+retard
+retarded
+kike
+chink
+spic
+wetback
+beaner
+gook
+tranny
+trannie
+coon
+paki
+raghead
+towelhead
+cracker
+honky
+gringo
+dyke
+lesbo
+homo

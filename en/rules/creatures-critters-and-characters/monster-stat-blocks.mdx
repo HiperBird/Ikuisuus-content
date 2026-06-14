@@ -1,0 +1,106 @@
+---
+contentType: rule
+---
+
+# Monster Stat Blocks
+
+This section explains the statistics and action entries that appear in a monster's stat block and how they are calculated and used in play. It covers hit dice and hit points, saving throws, speed and movement modes, proficiency bonuses, skills, limited-use notations, automatic grapple, Multiattack, and ammunition. For general combat actions and attack resolution, see [Actions in Combat](/en/library/rules/steel-and-strife/actions-in-combat) and [Making an Attack](/en/library/rules/steel-and-strife/making-an-attack).
+
+## Mechanics
+
+### Hit Dice and Hit Points
+
+A monster's hit points are determined by its Hit Dice (HD) and its Constitution modifier. Its Constitution modifier is multiplied by the number of Hit Dice the monster possesses, and the result is added to its hit points.
+
+Example: a monster with Constitution 12 (+1 modifier) and 2d8 Hit Dice has hit points equal to 2d8 + 2 (average 11).
+
+The following table shows the die used for a monster of a given size and the average hit points per die (for reference):
+
+| Size       | Hit Die | Average HP per Die |
+| ---------- | ------: | -----------------: |
+| Tiny       |      d4 |                2.5 |
+| Small      |      d6 |                3.5 |
+| Medium     |      d8 |                4.5 |
+| Large      |     d10 |                5.5 |
+| Huge       |     d12 |                6.5 |
+| Gargantuan |     d20 |               10.5 |
+
+> Note: the actual HP is rolled (or taken as the average at design time) and then the total Constitution bonus (Con modifier × number of HD) is added.
+
+### Saving Throws
+
+The Saving Throws entry in a monster stat block is present only for creatures that are particularly adept at resisting certain kinds of effects. When present, a saving throw bonus shown for an ability is the sum of the monster's relevant ability modifier and its proficiency bonus (the proficiency bonus is determined by the monster's challenge rating; see the proficiency table below).
+
+For most creatures that do not have special saving-throw training, this section is omitted from the stat block.
+
+### Speed and Movement Modes
+
+A monster's speed indicates how far it can move on its turn. All creatures have a walking speed (simply called the monster's speed). Creatures that lack any form of ground-based locomotion have a walking speed of 0 feet.
+
+Some monsters have one or more additional movement modes. Review the [Movement, Maps, and Shapes](/en/library/rules/steel-and-strife/maps-grids-and-shapes) section for how movement modes interact with terrain and conditions.
+
+### Proficiency Bonus by Challenge Rating
+
+A monster's proficiency bonus is determined by its challenge rating (CR). That proficiency bonus applies to the monster's attack rolls, saving throws (when present), skill bonuses, and other proficiency-based calculations.
+
+|      Challenge Rating | Proficiency Bonus |
+| --------------------: | ----------------: |
+| 0 (and 1/8, 1/4, 1/2) |                +2 |
+|                   1–4 |                +2 |
+|                   5–8 |                +3 |
+|                  9–12 |                +4 |
+|                 13–16 |                +5 |
+|                 17–20 |                +6 |
+|                 21–24 |                +7 |
+|                 25–28 |                +8 |
+|                    29 |                +9 |
+|                   30+ |     +10 (or more) |
+
+(If a monster's CR is expressed as fractional values such as 1/8, 1/4, or 1/2, use the proficiency bonus listed for that CR bracket—fractional CRs at the low end use the +2 value.)
+
+### Skills
+
+The Skills entry is reserved for monsters that are proficient in one or more skills. A monster's skill bonus is the sum of the relevant ability modifier and the monster's proficiency bonus (as determined by its challenge rating). Other modifiers (circumstance, trait-based modifiers, or magic items) may also apply and are shown in the stat block.
+
+Example: a monster that is very perceptive and stealthy might have bonuses to Wisdom (Perception) and Dexterity (Stealth). Each listed skill bonus equals (ability modifier) + (proficiency bonus) + any other modifiers.
+
+### Limited Usage Notation
+
+Many special monster abilities carry a usage limit shown in the stat block:
+
+- **X/Day.** The ability can be used X times. The monster must finish a long rest to regain expended uses.
+- **Recharge X–Y.** The ability can be used once; at the start of each of the monster's subsequent turns, roll a d6. If the result falls within the listed range (e.g. 5–6), the ability is regained. It also recharges on a short or long rest.
+- **Recharge after a Short or Long Rest.** The ability can be used once, then requires a short or long rest to regain.
+
+### Grapple Rules for Monsters
+
+Many monsters have attacks that grapple automatically on a hit. This differs from the standard rules at [Attack Alterations](/en/library/rules/steel-and-strife/attack-alterations):
+
+- If a monster's attack text states it grapples the target on a hit, the grapple succeeds automatically — no additional ability check required, unless the attack text says otherwise.
+- To escape, the grappled creature uses its action and succeeds on a Strength (Athletics) or Dexterity (Acrobatics) check against the escape DC listed in the stat block.
+- If no escape DC is listed, use 10 + the monster's Strength (Athletics) modifier.
+
+### Multiattack
+
+A creature that can make multiple attacks on its turn has the Multiattack action. It makes the combination of attacks specified by that entry.
+
+- A creature cannot use Multiattack when making an opportunity attack; opportunity attacks are always a single melee attack.
+- Follow the Multiattack entry text for which attacks are made and in what order.
+
+### Ammunition
+
+Assume a monster carries enough ammunition to make its ranged attacks. Default quantities when not stated: **2d4** pieces for thrown weapons, **2d10** for projectile weapons such as bows or crossbows.
+
+### Monster Equipment
+
+The Game Director may equip monsters with additional gear as appropriate to the creature's role and history. Consider in advance how much of a monster's equipment is recoverable after it is slain, and whether any of that equipment remains usable. Armour or weapons crafted for a creature's body are rarely serviceable for a different creature.
+
+### Material Components for Spellcasting Monsters
+
+If a spellcasting monster's abilities require material components, assume the monster already possesses those components unless a specific scenario dictates otherwise. The Game Director need not track this granularly — it is a conceit of narration, not resource accounting.
+
+## Interactions
+
+- Ability-score modifiers affect several derived statistics simultaneously: Constitution affects hit points (Con modifier × HD) and Constitution-based saving throws; other ability modifiers contribute to attack and damage rolls, skills, and checks as usual.
+- The proficiency bonus derived from the monster's challenge rating is used consistently for attack rolls, saving throws (when listed), skill bonuses, and any other proficiency-based calculations in the stat block.
+- Movement modes interact with terrain and conditions as described in the Player's Handbook and related rules (for example, difficult terrain, being restrained, or rules that impair a particular movement type).

@@ -1,0 +1,139 @@
+name: content-check
+
+on:
+  pull_request:
+    paths:
+      - '**/*.mdx'
+      - '**/*.md'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  banned-terms:
+    name: Scan for banned terms
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Get changed content files
+        id: changed
+        run: |
+          FILES=$(git diff --name-only --diff-filter=ACMR origin/${{ github.base_ref }}...HEAD -- '*.mdx' '*.md')
+          echo "files<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$FILES" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+          if [ -z "$FILES" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Scan for banned terms
+        id: scan
+        if: steps.changed.outputs.skip == 'false'
+        run: |
+          BANNED_FILE=".github/banned_terms.txt"
+          if [ ! -f "$BANNED_FILE" ]; then
+            echo "No banned_terms.txt found — skipping."
+            exit 0
+          fi
+
+          # Build grep pattern from banned_terms.txt (skip comments and blanks)
+          PATTERNS=""
+          while IFS= read -r line || [ -n "$line" ]; do
+            # Trim whitespace
+            line="$(echo "$line" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
+            # Skip comments and empty lines
+            [[ -z "$line" || "$line" == \#* ]] && continue
+            if [ -z "$PATTERNS" ]; then
+              PATTERNS="$line"
+            else
+              PATTERNS="$PATTERNS|$line"
+            fi
+          done < "$BANNED_FILE"
+
+          if [ -z "$PATTERNS" ]; then
+            echo "No banned terms configured — skipping."
+            exit 0
+          fi
+
+          FOUND=0
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+            if grep -inP "\b($PATTERNS)\b" "$file"; then
+              echo "::error file=$file::Banned term found in $file"
+              FOUND=1
+            fi
+          done <<< "${{ steps.changed.outputs.files }}"
+
+          if [ "$FOUND" -ne 0 ]; then
+            echo ""
+            echo "❌ Banned terms detected in changed files. See errors above."
+            echo "profanity=true" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
+          echo "profanity=false" >> "$GITHUB_OUTPUT"
+          echo "✅ No banned terms found."
+
+      - name: Ban submitter IP via webhook
+        if: failure() && steps.scan.outputs.profanity == 'true'
+        env:
+          SITE_URL: ${{ secrets.SITE_URL }}
+          CONTENT_WEBHOOK_SECRET: ${{ secrets.CONTENT_WEBHOOK_SECRET }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -z "$SITE_URL" ] || [ -z "$CONTENT_WEBHOOK_SECRET" ]; then
+            echo "⚠️  SITE_URL or CONTENT_WEBHOOK_SECRET not configured — skipping IP ban."
+            exit 0
+          fi
+
+          # Extract the submitter IP from the PR body metadata comment
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          BODY=$(gh pr view "$PR_NUMBER" --json body --jq '.body' 2>/dev/null || echo "")
+          IP=$(echo "$BODY" | grep -oP '(?<=<!-- meta:ip=)[^ ]+(?= -->)' || echo "")
+
+          if [ -z "$IP" ]; then
+            echo "No submitter IP found in PR body — cannot ban."
+            exit 0
+          fi
+
+          echo "Banning IP: $IP"
+          HTTP_STATUS=$(curl -s -o /tmp/ban-response.json -w "%{http_code}" \
+            -X POST "${SITE_URL}/api/content-webhook" \
+            -H "Content-Type: application/json" \
+            -H "x-webhook-secret: ${CONTENT_WEBHOOK_SECRET}" \
+            -d "{\"action\": \"ban-ip\", \"ip\": \"${IP}\", \"reason\": \"Profanity detected in content repo PR #${PR_NUMBER}\"}")
+
+          echo "Ban response ($HTTP_STATUS):"
+          cat /tmp/ban-response.json
+          echo ""
+
+          if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
+            echo "✅ IP $IP banned successfully."
+          else
+            echo "⚠️  IP ban request returned status $HTTP_STATUS."
+          fi
+
+      - name: Close offending PR
+        if: failure() && steps.scan.outputs.profanity == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          BRANCH=$(gh pr view "$PR_NUMBER" --json headRefName --jq '.headRefName' 2>/dev/null || echo "")
+
+          gh pr close "$PR_NUMBER" --comment "Automatically closed: banned terms detected in submitted content." \
+            && echo "✅ PR #${PR_NUMBER} closed." \
+            || echo "⚠️  Failed to close PR #${PR_NUMBER}."
+
+          if [ -n "$BRANCH" ]; then
+            gh api -X DELETE "repos/${{ github.repository }}/git/refs/heads/${BRANCH}" 2>/dev/null \
+              && echo "✅ Branch ${BRANCH} deleted." \
+              || echo "⚠️  Failed to delete branch ${BRANCH}."
+          fi

@@ -1,0 +1,99 @@
+---
+contentType: rule
+---
+
+# Encumbrance and Carrying Capacity
+
+Carrying capacity in this system follows the granular 3.5-edition model. Three load tiers — light, medium, and heavy — determine speed, skill penalties, and the maximum Dexterity bonus that armor can transmit.
+
+## Carrying Capacity by Strength
+
+The table below lists the upper bound (in pounds) for each load tier at every Strength score from 1 to 29, for a Medium-sized bipedal creature. Larger or smaller creatures, and quadrupeds, modify these values via the multipliers in the next section.
+
+| Strength | Light Load | Medium Load | Heavy Load |
+| -------- | ---------- | ----------- | ---------- |
+| 1        | 3          | 6           | 10         |
+| 2        | 6          | 13          | 20         |
+| 3        | 10         | 20          | 30         |
+| 4        | 13         | 26          | 40         |
+| 5        | 16         | 33          | 50         |
+| 6        | 20         | 40          | 60         |
+| 7        | 23         | 46          | 70         |
+| 8        | 26         | 53          | 80         |
+| 9        | 30         | 60          | 90         |
+| 10       | 33         | 66          | 100        |
+| 11       | 38         | 76          | 115        |
+| 12       | 43         | 86          | 130        |
+| 13       | 50         | 100         | 150        |
+| 14       | 58         | 116         | 175        |
+| 15       | 66         | 133         | 200        |
+| 16       | 76         | 153         | 230        |
+| 17       | 86         | 173         | 260        |
+| 18       | 100        | 200         | 300        |
+| 19       | 116        | 233         | 350        |
+| 20       | 133        | 266         | 400        |
+| 21       | 153        | 306         | 460        |
+| 22       | 173        | 346         | 520        |
+| 23       | 200        | 400         | 600        |
+| 24       | 233        | 466         | 700        |
+| 25       | 266        | 533         | 800        |
+| 26       | 306        | 613         | 920        |
+| 27       | 346        | 693         | 1040       |
+| 28       | 400        | 800         | 1200       |
+| 29       | 466        | 933         | 1400       |
+
+## Load Penalties
+
+| Load   | Max Dex Bonus | Check Penalty | Speed Reduction | Run Multiplier |
+| ------ | ------------- | ------------- | --------------- | -------------- |
+| Light  | —             | 0             | None            | ×4             |
+| Medium | +3            | −3            | 30 ft → 20 ft   | ×4             |
+| Heavy  | +1            | −6            | 30 ft → 20 ft   | ×3             |
+
+Speed reduction follows the same scale at other base speeds: 20 ft drops to 15 ft, 40 ft drops to 30 ft, and so on.
+
+## Lifting and Dragging
+
+- **Lift over head**: a creature can lift a weight up to its **Heavy Load maximum** over its head. Carrying this much treats the creature as having a heavy load.
+- **Lift off the ground**: a creature can lift a weight up to **twice its Heavy Load maximum** off the ground. While doing so, the creature can only stagger, moving 5 feet per round.
+- **Push or drag**: on a smooth surface, a creature can push or drag up to **five times its Heavy Load maximum**. Unfavourable conditions can halve this; favourable conditions can double it.
+
+## Size Multipliers
+
+Apply these multipliers to every threshold in the Carrying Capacity by Strength table, based on creature size:
+
+| Size       | Multiplier |
+| ---------- | ---------- |
+| Fine       | ×1/8       |
+| Diminutive | ×1/4       |
+| Tiny       | ×1/2       |
+| Small      | ×3/4       |
+| Medium     | ×1         |
+| Large      | ×2         |
+| Huge       | ×4         |
+| Gargantuan | ×8         |
+| Colossal   | ×16        |
+
+## Quadruped Multipliers
+
+A quadruped (or other creature with a markedly load-bearing frame) replaces its size multiplier with the quadruped value at Medium and larger sizes:
+
+| Size       | Quadruped Multiplier |
+| ---------- | -------------------- |
+| Medium     | ×1.5                 |
+| Large      | ×3                   |
+| Huge       | ×6                   |
+| Gargantuan | ×12                  |
+| Colossal   | ×24                  |
+
+Sizes smaller than Medium continue to use the bipedal size multipliers from the previous table.
+
+## Tremendous Strength
+
+For Strength scores above 29, find the score in the 20–29 range that shares the same ones digit, then multiply every threshold by 4 for each full +10 above that score. Apply size and quadruped multipliers afterward.
+
+For example, a Strength 32 creature uses Strength 22's row (173 / 346 / 520) multiplied by 4: 692 / 1384 / 2080. A Strength 42 creature uses the same row multiplied by 16.
+
+---
+
+For Dexterity-based skills — Acrobatics, Sleight of Hand, and Stealth — see [Abilities and Skills](/en/library/rules/the-measure-of-the-self/abilities-and-skills). For how ability checks and difficulty classes work, see [Checks and Rolls](/en/library/rules/the-measure-of-the-self/checks-and-rolls).

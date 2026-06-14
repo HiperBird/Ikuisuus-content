@@ -1,0 +1,108 @@
+---
+contentType: rule
+---
+
+# Movement, Maps, and Shapes
+
+This page covers how physical space is represented at the table: the grid, how to measure distances, how diagonal movement is handled, and the geometry of area shapes used by spells, abilities, and environmental effects.
+
+---
+
+## The Grid
+
+Combat is typically played on a grid where each square represents **5 feet**. A creature's size determines how many squares it occupies (see [Movement](/en/library/rules/steel-and-strife/movement-terrain-and-traversal) for the size table).
+
+- Each square represents a 5-foot cube of volume — relevant for three-dimensional effects such as cylinders and spheres.
+- All distances in the rules (movement speed, weapon reach, spell range) are expressed in feet and translate directly to squares.
+
+---
+
+## Measuring Distance
+
+To measure the distance between two points, count the number of squares along the shortest path.
+
+### Diagonal Movement
+
+On a flat grid, moving diagonally covers more real-world distance than moving along a cardinal direction. Two common approaches are used:
+
+- **Flat counting** — every diagonal square costs 1 square (5 ft). Simple and fast; distances are slightly underestimated.
+- **Alternating cost** — the first diagonal costs 1 square (5 ft), the second costs 2 squares (10 ft), alternating. More accurate; tracked per turn, not per move.
+
+The GM chooses one method at the start of a campaign and applies it consistently. Distances for spell ranges, movement speeds, and area measurements all follow the same method.
+
+### Vertical Distance
+
+Height is measured in the same 5-foot increments. Flying, falling, and three-dimensional areas use the same grid counting rules as horizontal movement.
+
+---
+
+## Points of Origin
+
+Every area of effect has a **point of origin** — the position from which the effect expands.
+
+- The point of origin is typically a point in space that you select when you use the effect.
+- Some effects specify that a creature, object, or location is the origin.
+- An effect expands outward from its origin in straight lines. If no unobstructed straight line can reach a location from the origin, that location is outside the area.
+- Only **total cover** blocks these lines. Partial cover does not limit an area's extent — it only affects attack rolls and saving throws.
+
+---
+
+## Area Shapes
+
+The following shapes define how areas of effect are laid out on the grid. Spell descriptions, monster abilities, and environmental effects all reference these shapes by name.
+
+### Cone
+
+A cone expands outward from its point of origin in a chosen direction. The width of the cone at any point equals its distance from the origin — so a 30-foot cone is 30 feet wide at its far end.
+
+- The cone's maximum extent is its stated length.
+- The point of origin is **not** included unless the effect specifies otherwise.
+
+### Cube
+
+A cube is placed so that one face touches or passes through the chosen point of origin. The size of a cube is the length of each edge.
+
+- The point of origin is **not** included unless the effect specifies otherwise.
+
+### Cylinder
+
+A cylinder is defined by a circular base of a given radius and a height. The center of that circle is the point of origin.
+
+- The effect fills the full height of the cylinder above (or below) the base circle.
+- The point of origin **is** included unless the effect specifies otherwise.
+
+### Line
+
+A line extends from its point of origin in a straight path to its stated length. Lines have a stated width that determines how many squares they cover.
+
+- The point of origin is **not** included unless the effect specifies otherwise.
+
+### Sphere
+
+A sphere extends outward from its chosen point of origin to a stated radius in all directions.
+
+- The point of origin **is** included unless the effect specifies otherwise.
+
+---
+
+## Inclusion and Exclusion of Origin
+
+Whether a point of origin falls inside its own area matters for targeting — creatures standing at the origin may be affected or protected depending on the shape.
+
+| Shape    | Origin included by default? |
+| -------- | --------------------------- |
+| Cone     | No                          |
+| Cube     | No                          |
+| Line     | No                          |
+| Cylinder | Yes                         |
+| Sphere   | Yes                         |
+
+When the spell or ability text says otherwise, follow the text.
+
+---
+
+## Interactions
+
+- Area shapes interact with cover rules: total cover blocks lines of effect; half and three-quarters cover do not limit the area but do affect saving throws and attack rolls.
+- When a creature or object is the origin of an area, use that creature's or object's full space as the origin point — not just a single corner or edge.
+- Diagonal distance rules apply equally to area measurements: a sphere's radius and a cone's length are both counted using the same diagonal method in use for movement.
